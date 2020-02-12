@@ -1,0 +1,20 @@
+.input-default {
+  max-width: 300px;
+  margin: 0 auto;
+  width: 100%;
+  margin-bottom: 13px;
+  padding: 13px 20px;
+  border: none;
+  border-bottom: 2px solid #dedede;
+  outline: none;
+  font-size: 16px;
+  background-color: transparent;
+}
+
+.input-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}

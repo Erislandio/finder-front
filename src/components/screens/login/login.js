@@ -6,6 +6,8 @@ import { api } from "../../../service/api";
 import { Link } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import cookie from "js-cookie";
+import { ButtonDefault } from "../../utils/button/buttonDefault";
+import { InputDefault } from "../../utils/input/inputDefault";
 
 export const Login = ({ history }) => {
   const [user, setUser] = useState({
@@ -52,46 +54,41 @@ export const Login = ({ history }) => {
 
   return (
     <Container id="login">
-      <div className="logo">
-        <FaMapMarkerAlt color="#fade11" size="29" />
-        <h3>Finder</h3>
-      </div>
-      <main className="wrapper">
-        <div className="title-page">
-          <h1>Login</h1>
+      <main className="main-login">
+        <div className="title">
+          <span
+            className="logo"
+            style={{ display: "flex", alignItems: "center" }}
+          >
+            <h1>FINDER</h1>
+            <FaMapMarkerAlt size="40" />
+          </span>
         </div>
-        <form className="form" onSubmit={handleSubmit}>
-          <span className="default-input">
-            <label>Email</label>
-            <input
-              placeholder="Email"
-              value={user.email}
-              name="email"
-              type="email"
-              onChange={handleChange}
-              required
-            />
-          </span>
-          <span className="default-input">
-            <label>Password</label>
-            <input
-              placeholder="Password"
-              value={user.password}
-              name="password"
-              onChange={handleChange}
-              required
-              type="password"
-            />
-          </span>
-          <span className="default-button">
-            <button disabled={user.loading} type="submit">
-              Entrar
-            </button>
-          </span>
-          <Link className="link" to="/signin">
-            Não tem conta?
-          </Link>
-        </form>
+        <div></div>
+        <div className="input-center">
+          <InputDefault
+            type="email"
+            required
+            value={user.email}
+            onChange={handleChange}
+            name="email"
+            placeholder="Email"
+          />
+          <InputDefault
+            type="password"
+            required
+            value={user.password}
+            onChange={handleChange}
+            name="password"
+            placeholder="Password"
+          />
+        </div>
+        <ButtonDefault id="login-btn" type="submit" onClick={handleSubmit}>
+          Seguir
+        </ButtonDefault>
+        <div className="link-container-group">
+          <Link to="/signin">Não tem conta?</Link>
+        </div>
       </main>
     </Container>
   );
