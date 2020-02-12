@@ -7,12 +7,21 @@ import { useToasts } from "react-toast-notifications";
 import cookie from "js-cookie";
 import { ButtonDefault } from "../../utils/button/buttonDefault";
 import { InputDefault } from "../../utils/input/inputDefault";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
+import './signin.css'
 
 export const SignIn = ({ history }) => {
   const [user, setUser] = useState({
     email: "",
-    password: ""
+    password: "",
+    document: "",
+    lastname: "",
+    name: "",
+    isProvider: false
   });
+
+  const [phone, setPhone] = useState("");
 
   const { addToast } = useToasts();
 
@@ -52,7 +61,7 @@ export const SignIn = ({ history }) => {
   };
 
   return (
-    <Container id="login">
+    <Container id="login" className="signin">
       <main className="main-login">
         <div className="title">
           <span
@@ -63,47 +72,64 @@ export const SignIn = ({ history }) => {
             <FaMapMarkerAlt size="40" />
           </span>
         </div>
-        <div className="input-center">
-          <InputDefault
-            type="email"
-            required
-            value={user.email}
-            onChange={handleChange}
-            name="email"
-            placeholder="Email"
-          />
-          <InputDefault
-            type="text"
-            required
-            value={user.email}
-            onChange={handleChange}
-            name="name"
-            placeholder="Nome"
-          />
-          <InputDefault
-            type="text"
-            required
-            value={user.email}
-            onChange={handleChange}
-            name="lastname"
-            placeholder="Sobrenome"
-          />
-          <InputDefault
-            type="password"
-            required
-            value={user.password}
-            onChange={handleChange}
-            name="password"
-            placeholder="Password"
-          />
-        </div>
-        <ButtonDefault
-          id="login-btn"
-          type="submit"
-          onClick={() => console.log("teste")}
-        >
-          Seguir :-)
-        </ButtonDefault>
+        <form>
+          <div className="input-center">
+            <InputDefault
+              type="email"
+              required
+              value={user.email}
+              onChange={handleChange}
+              name="email"
+              placeholder="Email"
+            />
+            <InputDefault
+              type="text"
+              required
+              value={user.name}
+              onChange={handleChange}
+              name="name"
+              placeholder="Nome"
+            />
+            <InputDefault
+              type="text"
+              required
+              value={user.lastname}
+              onChange={handleChange}
+              name="lastname"
+              placeholder="Sobrenome"
+            />
+            <InputDefault
+              type="text"
+              required
+              value={user.document}
+              onChange={handleChange}
+              name="document"
+              placeholder="CPF"
+            />
+            <PhoneInput
+              placeholder="Número de telefone"
+              value={phone}
+              onChange={setPhone}
+              country="BR"
+              defaultCountry="BR"
+            />
+            <InputDefault
+              type="password"
+              required
+              value={user.password}
+              onChange={handleChange}
+              name="password"
+              placeholder="Password"
+            />
+          </div>
+          <ButtonDefault
+            id="login-btn"
+            type="submit"
+            onClick={() => console.log("teste")}
+          >
+            Seguir :-)
+          </ButtonDefault>
+        </form>
         <Link to="/login">Login</Link>
       </main>
     </Container>

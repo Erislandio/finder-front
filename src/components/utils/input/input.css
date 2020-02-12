@@ -1,15 +1,20 @@
-.input-default {
+.PhoneInput input {
+  margin-bottom: 0px !important;
+  border: none !important;
+}
+
+.input-default,
+.PhoneInput input {
   max-width: 300px;
-  margin: 0 auto;
+  margin: 6px auto;
   width: 100%;
-  margin-bottom: 13px;
   padding: 13px 20px;
   border: none;
   border-bottom: 2px solid #dedede;
   outline: none;
   font-size: 17px;
   background-color: transparent;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .input-center {
@@ -22,4 +27,15 @@
 
 .input-default:focus {
   border-bottom-color: #f9b411;
+}
+
+.PhoneInput {
+  width: 100%;
+  margin: 6px auto;
+  max-width: 300px;
+  border-bottom: 2px solid #dedede;
+  padding-left: 20px;
+}
+
+.PhoneInputCountry {
 }

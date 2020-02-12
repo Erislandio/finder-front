@@ -50,7 +50,7 @@ function Map() {
             </ButtonDefault>
           </span>
           <ButtonDefault type="default">
-            <IoIosMenu color="#fff" opacity="0.7" size="30" />
+            <IoIosMenu color="#fff" opacity="0.9" size="30" />
           </ButtonDefault>
         </div>
       </span>
