@@ -29,6 +29,15 @@
   flex-direction: column;
 }
 
+#login form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  min-height: 300px;
+}
+
 #login .main-login h1 {
   font-size: 40px;
   color: #f9b411;

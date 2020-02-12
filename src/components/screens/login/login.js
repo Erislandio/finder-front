@@ -12,7 +12,8 @@ import { InputDefault } from "../../utils/input/inputDefault";
 export const Login = ({ history }) => {
   const [user, setUser] = useState({
     email: "",
-    password: ""
+    password: "",
+    loading: false
   });
 
   const { addToast } = useToasts();
@@ -36,6 +37,7 @@ export const Login = ({ history }) => {
         history.push("/home");
       }
     } catch (error) {
+      setUser({ ...user, loading: false });
       return addToast("Não foi possível fazer o login no momento", {
         appearance: "error"
       });
@@ -65,27 +67,30 @@ export const Login = ({ history }) => {
           </span>
         </div>
         <div></div>
-        <div className="input-center">
-          <InputDefault
-            type="email"
-            required
-            value={user.email}
-            onChange={handleChange}
-            name="email"
-            placeholder="Email"
-          />
-          <InputDefault
-            type="password"
-            required
-            value={user.password}
-            onChange={handleChange}
-            name="password"
-            placeholder="Password"
-          />
-        </div>
-        <ButtonDefault id="login-btn" type="submit" onClick={handleSubmit}>
-          Seguir
-        </ButtonDefault>
+        <form onSubmit={handleSubmit}>
+          <div className="input-center">
+            <InputDefault
+              type="email"
+              required
+              value={user.email}
+              onChange={handleChange}
+              name="email"
+              placeholder="Email"
+              autoFocus
+            />
+            <InputDefault
+              type="password"
+              required
+              value={user.password}
+              onChange={handleChange}
+              name="password"
+              placeholder="Password"
+            />
+          </div>
+          <ButtonDefault id="login-btn" type="submit">
+            Seguir
+          </ButtonDefault>
+        </form>
         <div className="link-container-group">
           <Link to="/signin">Não tem conta?</Link>
         </div>

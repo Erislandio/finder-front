@@ -8,7 +8,8 @@ export const InputDefault = ({
   value,
   required,
   name,
-  placeholder
+  placeholder,
+  autoFocus
 }) => (
   <input
     id={id}
@@ -19,5 +20,7 @@ export const InputDefault = ({
     required={required}
     name={name}
     placeholder={placeholder}
+    autoFocus={autoFocus}
+    autoComplete={false}
   />
 );
