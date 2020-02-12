@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import MapGL, { Marker } from "react-map-gl";
 import Dimensions from "react-dimensions";
 import "./home.css";
-import { FaMapMarkerAlt, FaSearchLocation } from "react-icons/fa";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import { InputDefault } from "../../utils/input/inputDefault";
 import { ButtonDefault } from "../../utils/button/buttonDefault";
-import { IoIosSettings, IoIosSearch, IoMdExit } from "react-icons/io";
+import { IoIosSearch, IoIosMenu } from "react-icons/io";
 
 function Map() {
   const accessToken =
@@ -36,16 +36,21 @@ function Map() {
     <div className="app">
       <span className="search">
         <div>
-          <InputDefault
-            type="text"
-            id="search-input"
-            required={false}
-            placeholder="Buscar"
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-          />
-          <ButtonDefault type="submit">
-            <IoIosSearch color="#f9b411" size="26" />
+          <span>
+            <InputDefault
+              type="text"
+              id="search-input"
+              required={false}
+              placeholder="Buscar... exemplo: Moto taxi"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+            />
+            <ButtonDefault type="submit">
+              <IoIosSearch color="#f9b411" size="26" />
+            </ButtonDefault>
+          </span>
+          <ButtonDefault type="default">
+            <IoIosMenu color="#fff" opacity="0.7" size="30" />
           </ButtonDefault>
         </div>
       </span>
@@ -64,20 +69,6 @@ function Map() {
             />
           </Marker>
         </MapGL>
-      </div>
-      <div className="submenu">
-        <span>
-          <IoMdExit size="30" />
-          sair
-        </span>
-        <span>
-          <IoIosSearch size="30" />
-          buscar
-        </span>
-        <span>
-          <IoIosSettings size="30" />
-          conta
-        </span>
       </div>
     </div>
   );

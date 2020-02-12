@@ -28,9 +28,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.app .search > div > span {
+  max-width: 90%;
+}
+
+.app .search > div > span {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background: #fff;
   background: transparent;
-  padding: 20px;
+  padding: 20px 0px 20px 20px;
   position: relative;
 }
 
@@ -44,8 +55,13 @@
 
 .app .search button {
   background-color: transparent;
+  max-width: unset;
+  width: unset;
+}
+
+.app .search span button {
   position: absolute;
-  right: 30px;
+  right: 10px;
   max-width: unset;
   width: 40px;
 }
