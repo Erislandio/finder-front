@@ -9,7 +9,9 @@ import { ButtonDefault } from "../../utils/button/buttonDefault";
 import { InputDefault } from "../../utils/input/inputDefault";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import './signin.css'
+import "./signin.css";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 export const SignIn = ({ history }) => {
   const [user, setUser] = useState({
@@ -18,7 +20,7 @@ export const SignIn = ({ history }) => {
     document: "",
     lastname: "",
     name: "",
-    isProvider: false
+    loading: false
   });
 
   const [phone, setPhone] = useState("");
@@ -29,7 +31,7 @@ export const SignIn = ({ history }) => {
     setUser({ ...user, loading: true });
     e.preventDefault();
     try {
-      const { data } = await api.post("/login", {
+      const { data } = await api.post("/user", {
         ...user
       });
 
@@ -39,12 +41,34 @@ export const SignIn = ({ history }) => {
         });
       }
 
-      if (data.user) {
-        cookie.set("user", JSON.stringify(data.user));
-        history.push("/home");
+      if (data) {
+        api
+          .post("/login", {
+            email: user.email,
+            password: user.password
+          })
+          .then(res => {
+            const token = res.token;
+            const id = res.user.id;
+
+            cookie.set("user", {
+              token,
+              id
+            });
+            history.push("/home");
+          })
+          .catch(error => {
+            return addToast(error, {
+              appearance: "error"
+            });
+          })
+          .finally(() => {
+            setUser({ ...user, loading: false });
+          });
       }
     } catch (error) {
-      return addToast("Não foi possível fazer o login no momento", {
+      setUser({ ...user, loading: false });
+      return addToast("Não foi possível fazer o cadastro momento", {
         appearance: "error"
       });
     }
@@ -72,7 +96,7 @@ export const SignIn = ({ history }) => {
             <FaMapMarkerAlt size="40" />
           </span>
         </div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="input-center">
             <InputDefault
               type="email"
@@ -122,12 +146,12 @@ export const SignIn = ({ history }) => {
               placeholder="Password"
             />
           </div>
-          <ButtonDefault
-            id="login-btn"
-            type="submit"
-            onClick={() => console.log("teste")}
-          >
-            Seguir :-)
+          <ButtonDefault id="login-btn" type="submit" onClick={() => {}}>
+            {user.loading ? (
+              <Loader type="TailSpin" color="#fff" height={18} width={18} />
+            ) : (
+              "Cadastrar"
+            )}
           </ButtonDefault>
         </form>
         <Link to="/login">Login</Link>

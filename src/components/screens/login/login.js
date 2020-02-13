@@ -8,6 +8,8 @@ import { useToasts } from "react-toast-notifications";
 import cookie from "js-cookie";
 import { ButtonDefault } from "../../utils/button/buttonDefault";
 import { InputDefault } from "../../utils/input/inputDefault";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 export const Login = ({ history }) => {
   const [user, setUser] = useState({
@@ -27,16 +29,24 @@ export const Login = ({ history }) => {
       });
 
       if (data.error) {
+        setUser({ ...user, loading: false });
         return addToast(data.message, {
           appearance: "error"
         });
       }
 
       if (data.user) {
-        cookie.set("user", JSON.stringify(data.user));
+        const token = data.token;
+        const id = data.user.id;
+
+        cookie.set("user", {
+          token,
+          id
+        });
         history.push("/home");
       }
     } catch (error) {
+      console.log(error);
       setUser({ ...user, loading: false });
       return addToast("Não foi possível fazer o login no momento", {
         appearance: "error"
@@ -88,7 +98,11 @@ export const Login = ({ history }) => {
             />
           </div>
           <ButtonDefault id="login-btn" type="submit">
-            Seguir
+            {user.loading ? (
+              <Loader type="TailSpin" color="#fff" height={18} width={18} />
+            ) : (
+              "Seguir"
+            )}
           </ButtonDefault>
         </form>
         <div className="link-container-group">

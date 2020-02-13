@@ -21,6 +21,6 @@ export const InputDefault = ({
     name={name}
     placeholder={placeholder}
     autoFocus={autoFocus}
-    autoComplete={false}
+    autoComplete="false"
   />
 );
