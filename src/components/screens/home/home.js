@@ -6,10 +6,10 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { InputDefault } from "../../utils/input/inputDefault";
 import { ButtonDefault } from "../../utils/button/buttonDefault";
 import { IoIosSearch, IoIosMenu } from "react-icons/io";
+import { authToken } from "../../../config/auth";
+const accessToken = authToken;
 
 function Map() {
-  const accessToken =
-    "pk.eyJ1IjoiZXJpc2xhbmRpbyIsImEiOiJjazZkdjE2aGExcmJ5M3FwYmg0MzBzaGd4In0._MoxaYScCdkosFswaDN-SQ";
   const [location, setLocation] = useState({
     latitude: 0,
     longitude: 0,
@@ -18,12 +18,18 @@ function Map() {
     pitch: 0
   });
 
+  const [userLocation, setUserLocation] = useState({
+    latitude: 0,
+    longitude: 0
+  });
+
   const [search, setSearch] = useState("");
 
   const getLocation = () => {
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
         setLocation({ ...location, latitude, longitude });
+        setUserLocation({ longitude, latitude });
       }
     );
   };
@@ -61,7 +67,11 @@ function Map() {
           mapboxApiAccessToken={accessToken}
           onViewportChange={setLocation}
         >
-          <Marker longitude={-46.5599117} latitude={-22.9183867} zoom={20}>
+          <Marker
+            longitude={userLocation.longitude}
+            latitude={userLocation.latitude}
+            zoom={20}
+          >
             <FaMapMarkerAlt
               color="#f9b411"
               size="30"

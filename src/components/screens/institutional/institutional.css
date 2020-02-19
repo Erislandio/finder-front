@@ -1,0 +1,115 @@
+.header-institutional .logo h1 {
+  font-size: 25px;
+  color: #f9b411;
+  font-family: "Pacifico", cursive;
+}
+
+.header-institutional .logo svg {
+  margin-left: 10px;
+}
+
+.header-institutional {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  background: #34495e;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-institutional a {
+  color: #fff;
+  font-size: 16px;
+  background-color: #f9b411;
+  max-width: 80px;
+  padding: 5px;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 12px;
+}
+
+.main {
+  background: #ecf0f1;
+}
+
+.main .description {
+  padding: 30px;
+  text-align: center;
+}
+
+.description h3 {
+  font-size: 30px;
+}
+
+.card {
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #dedede;
+  margin: 20px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 10px;
+  background: #fff;
+
+  -webkit-box-shadow: 2px 6px 26px -7px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 6px 26px -7px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 6px 26px -7px rgba(0, 0, 0, 0.75);
+}
+h4.title {
+  font-size: 20px;
+  color: #333;
+}
+
+footer {
+  background: #2c3e50;
+  padding: 20px;
+}
+
+footer ul li a {
+  color: #fff;
+}
+
+footer ul li {
+  list-style: none;
+}
+
+.subscribe {
+  padding: 30px;
+  text-align: center;
+}
+
+.subscribe h4 {
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.subscribe div {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.subscribe button {
+  max-width: 140px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #dedede;
+}
+
+.subscribe button a {
+  text-decoration: none;
+  color: #fff;
+}
+.subscribe div button:first-of-type {
+  background: #2ecc71;
+}
+
+.subscribe div button:last-of-type {
+    background: #16a085;
+}

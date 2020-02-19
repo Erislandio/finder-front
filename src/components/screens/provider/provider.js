@@ -9,18 +9,19 @@ import { ButtonDefault } from "../../utils/button/buttonDefault";
 import { InputDefault } from "../../utils/input/inputDefault";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import "./signin.css";
+import "../signin/signin.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 
-export const SignIn = ({ history }) => {
+export const Provider = ({ history }) => {
   const [user, setUser] = useState({
     email: "",
     password: "",
     document: "",
     lastname: "",
     name: "",
-    loading: false
+    loading: false,
+    type: null
   });
 
   const [phone, setPhone] = useState("");
@@ -28,11 +29,11 @@ export const SignIn = ({ history }) => {
   const { addToast } = useToasts();
 
   const handleSubmit = async e => {
-    cookie.remove('user')
+    cookie.remove("user");
     setUser({ ...user, loading: true });
     e.preventDefault();
     try {
-      const { data } = await api.post("/user", {
+      const { data } = await api.post("/provider", {
         ...user
       });
 
@@ -131,6 +132,25 @@ export const SignIn = ({ history }) => {
               name="document"
               placeholder="CPF"
             />
+            <select onChange={e => setUser({ ...user, type: e.target.value })}>
+              {!user.type && (
+                <option defaultValue="none" defaultChecked>
+                  Tipo de serviço
+                </option>
+              )}
+              <option value="Moto taxi" defaultChecked>
+                Moto taxi
+              </option>
+              <option value="Mecânica" defaultChecked>
+                Mecânica
+              </option>
+              <option value="Manicure" defaultChecked>
+                Manicure e Pedicure
+              </option>
+              <option value="Cabeleireiro" defaultChecked>
+                Cabeleireiro
+              </option>
+            </select>
             <PhoneInput
               placeholder="Número de telefone"
               value={phone}
