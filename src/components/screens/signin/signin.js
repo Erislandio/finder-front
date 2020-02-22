@@ -28,12 +28,13 @@ export const SignIn = ({ history }) => {
   const { addToast } = useToasts();
 
   const handleSubmit = async e => {
-    cookie.remove('user')
+    cookie.remove("user");
     setUser({ ...user, loading: true });
     e.preventDefault();
     try {
       const { data } = await api.post("/user", {
-        ...user
+        ...user,
+        phone
       });
 
       if (data.error) {
@@ -50,7 +51,7 @@ export const SignIn = ({ history }) => {
           })
           .then(res => {
             const token = res.token;
-            const id = res.user.id;
+            const id = res._id;
 
             cookie.set("user", {
               token,
@@ -68,6 +69,7 @@ export const SignIn = ({ history }) => {
           });
       }
     } catch (error) {
+      console.log(error);
       setUser({ ...user, loading: false });
       return addToast("Não foi possível fazer o cadastro momento", {
         appearance: "error"
