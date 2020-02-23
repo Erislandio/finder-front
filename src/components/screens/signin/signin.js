@@ -60,6 +60,8 @@ export const SignIn = ({ history }) => {
             history.push("/home");
           })
           .catch(error => {
+            setUser({ ...user, loading: false });
+
             return addToast(error, {
               appearance: "error"
             });
