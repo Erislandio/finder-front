@@ -8,6 +8,7 @@ import { Provider } from "./screens/provider/provider";
 import Home from "./screens/home/home";
 import { ToastProvider } from "react-toast-notifications";
 import { Institutional } from "./screens/institutional/institutional";
+import { AddressStep } from "./screens/provider/addressStep";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Switch>
           <PrivateRoute component={Account} path="/account" />
           <PrivateRoute component={Home} path="/home" />
+          <LoginRoute component={AddressStep} path="/step1" exact />
           <LoginRoute component={Login} path="/login" exact />
           <PublicRoute exact path="/signin" component={SignIn} />
           <PublicRoute exact path="/provider" component={Provider} />

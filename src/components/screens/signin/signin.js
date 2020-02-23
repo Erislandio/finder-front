@@ -51,7 +51,7 @@ export const SignIn = ({ history }) => {
           })
           .then(res => {
             const token = res.token;
-            const id = res._id;
+            const id = res.user._id;
 
             cookie.set("user", {
               token,

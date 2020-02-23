@@ -17,8 +17,9 @@ export const Provider = ({ history }) => {
   const [user, setUser] = useState({
     email: "",
     password: "",
-    document: "",
+    document: Math.random(),
     lastname: "",
+    fancyName: "",
     name: "",
     loading: false,
     type: null
@@ -27,6 +28,7 @@ export const Provider = ({ history }) => {
   const [phone, setPhone] = useState("");
 
   const { addToast } = useToasts();
+  console.log(user);
 
   const handleSubmit = async e => {
     cookie.remove("user");
@@ -34,7 +36,8 @@ export const Provider = ({ history }) => {
     e.preventDefault();
     try {
       const { data } = await api.post("/provider", {
-        ...user
+        ...user,
+        phone
       });
 
       if (data.error) {
@@ -47,17 +50,18 @@ export const Provider = ({ history }) => {
         api
           .post("/login", {
             email: user.email,
-            password: user.password
+            password: user.password,
+            provider: true
           })
-          .then(res => {
-            const token = res.token;
-            const id = res.user.id;
+          .then(({ data }) => {
+            const token = data.token;
+            const id = data.user._id;
 
             cookie.set("user", {
               token,
               id
             });
-            history.push("/home");
+            history.push("/step1");
           })
           .catch(error => {
             return addToast(error, {
@@ -111,10 +115,18 @@ export const Provider = ({ history }) => {
             <InputDefault
               type="text"
               required
+              value={user.fancyName}
+              onChange={handleChange}
+              name="fancyName"
+              placeholder="Nome do seu negócio"
+            />
+            <InputDefault
+              type="text"
+              required
               value={user.name}
               onChange={handleChange}
               name="name"
-              placeholder="Nome"
+              placeholder="Nome do proprietário"
             />
             <InputDefault
               type="text"
@@ -122,34 +134,27 @@ export const Provider = ({ history }) => {
               value={user.lastname}
               onChange={handleChange}
               name="lastname"
-              placeholder="Sobrenome"
+              placeholder="Sobrenome do proprietário"
             />
-            <InputDefault
-              type="text"
-              required
-              value={user.document}
-              onChange={handleChange}
-              name="document"
-              placeholder="CPF"
-            />
-            <select onChange={e => setUser({ ...user, type: e.target.value })}>
+            <select
+              className="select-default"
+              onChange={e => setUser({ ...user, type: e.target.value })}
+            >
               {!user.type && (
                 <option defaultValue="none" defaultChecked>
                   Tipo de serviço
                 </option>
               )}
-              <option value="Moto taxi" defaultChecked>
-                Moto taxi
-              </option>
-              <option value="Mecânica" defaultChecked>
-                Mecânica
-              </option>
-              <option value="Manicure" defaultChecked>
-                Manicure e Pedicure
-              </option>
-              <option value="Cabeleireiro" defaultChecked>
-                Cabeleireiro
-              </option>
+              <option value="Moto Taxi">Moto taxi</option>
+              <option value="Mecânica">Mecânica</option>
+              <option value="Manicure e pedicure">Manicure e Pedicure</option>
+              <option value="Cabeleireiro">Cabeleireiro</option>
+              <option value="Supermercado">Supermercado</option>
+              <option value="Pedreiro">Pedreiro</option>
+              <option value="Carpinteiro">Carpinteiro</option>
+              <option value="Pintor">Pintor</option>
+              <option value="Encanador">Encanador</option>
+              <option value="Restaurante">Restaurante</option>
             </select>
             <PhoneInput
               placeholder="Número de telefone"
@@ -171,11 +176,10 @@ export const Provider = ({ history }) => {
             {user.loading ? (
               <Loader type="TailSpin" color="#fff" height={18} width={18} />
             ) : (
-              "Cadastrar"
+              "Próximo passo "
             )}
           </ButtonDefault>
         </form>
-        <Link to="/login">Login</Link>
       </main>
     </Container>
   );
