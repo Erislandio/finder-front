@@ -142,14 +142,13 @@
 }
 
 .user-logo {
-  background-image: url(https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9);
   position: absolute;
   border-radius: 50%;
   width: 100px;
   height: 100px;
   left: 50%;
   transform: translate(-50%, 150%);
-  background-size: cover;
+  background-size: cover !important;
 }
 
 .user-description {
@@ -198,4 +197,25 @@ svg.banner-change {
   display: flex;
   justify-content: space-around;
   margin-top: 30px;
+}
+.leaflet-popup-content {
+  margin: 0pc !important;
+}
+
+.user-marker-image,
+.user-marker-image img {
+  max-width: 80px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.user-marker-image h3 {
+  font-size: 12px;
+  padding: 3px;
+}
+
+.react-toast-notifications__container {
+  z-index: 1000000000 !important;
 }

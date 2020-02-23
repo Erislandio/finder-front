@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./home.css";
-import {
-  MdMyLocation,
-  MdExitToApp,
-  MdLocalPhone,
-  MdAddAPhoto
-} from "react-icons/md";
+import { MdMyLocation } from "react-icons/md";
 import { MapComponent } from "./map";
 import { FilterItem } from "./filterItem";
 import { options } from "./options";
-import cookie from "js-cookie";
-import { IoIosArrowForward } from "react-icons/io";
+
 import { userProvider } from "./userProvider";
+import { Sidebar } from "./sidebar";
 
 const MapContainer = ({ history }) => {
   const [location, setLocation] = useState({
@@ -42,12 +37,6 @@ const MapContainer = ({ history }) => {
 
   const handleFilter = e => {
     setFilter(e.target.value);
-    // buscar na api de serach por filtro
-  };
-
-  const handleLogout = () => {
-    cookie.remove("user");
-    history.push("/");
   };
 
   const left = open ? "0px" : "-100%";
@@ -70,36 +59,12 @@ const MapContainer = ({ history }) => {
             <MdMyLocation size="50" color="#fff" />
           </button>
           <div className="dropbar" style={{ left }}>
-            <div className="banner">
-              <MdAddAPhoto
-                className="banner-change"
-                color="#fff"
-                opacity="0.8"
-                size={30}
-              />
-              <div className="user-logo"></div>
-            </div>
-            <div className="user-description">
-              <h2>Erislandio soares</h2>
-              <h3>
-                <MdLocalPhone color="#2ecc71" />
-                11 942676399
-              </h3>
-            </div>
-            <div className="button-container">
-              <button className="see-more">
-                Ver mais
-                <IoIosArrowForward size={15} color="#fff" />
-              </button>
-              <button className="logout" onClick={handleLogout}>
-                Sair
-                <MdExitToApp size={20} color="#fff" />
-              </button>
-            </div>
+            <Sidebar history={history} />
           </div>
         </span>
       </div>
       <MapComponent
+        setOpen={setOpen}
         location={location}
         userLocation={userLocation}
         onViewportChanged={onViewportChanged}
