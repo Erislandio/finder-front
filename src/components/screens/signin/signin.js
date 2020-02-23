@@ -49,9 +49,9 @@ export const SignIn = ({ history }) => {
             email: user.email,
             password: user.password
           })
-          .then(res => {
-            const token = res.token;
-            const id = res.user._id;
+          .then(({ data }) => {
+            const token = data.token;
+            const id = data.user._id;
 
             cookie.set("user", {
               token,
