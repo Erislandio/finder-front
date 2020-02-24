@@ -17,7 +17,7 @@ export const MapComponent = ({
   const { image, name, lastname } = user;
 
   const userImage = image
-    ? `https://whispering-headland-58237.herokuapp.com${image}`
+    ? `data:image/png;base64,${image}`
     : "https://www.landscapingbydesign.com.au/wp-content/uploads/2018/11/img-person-placeholder.jpg";
 
   return (
