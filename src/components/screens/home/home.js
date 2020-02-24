@@ -78,7 +78,7 @@ const MapContainer = ({ history }) => {
             className="user-marker"
             style={{ right: open ? "-100%" : "13px" }}
             onClick={() =>
-              setLocation({ ...location, center: userLocation.reverse() })
+              setLocation({ zoom: 14, center: userLocation.reverse() })
             }
           >
             <MdMyLocation size="50" color="#fff" />

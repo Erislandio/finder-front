@@ -17,7 +17,7 @@ export default function App() {
         <Switch>
           <PrivateRoute component={Account} path="/account" />
           <PrivateRoute component={Home} path="/home" />
-          <LoginRoute component={AddressStep} path="/step1" exact />
+          <PublicRoute component={AddressStep} path="/provider/step1" exact />
           <LoginRoute component={Login} path="/login" exact />
           <PublicRoute exact path="/signin" component={SignIn} />
           <PublicRoute exact path="/provider" component={Provider} />
