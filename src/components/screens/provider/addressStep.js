@@ -14,7 +14,6 @@ export const AddressStep = ({ history }) => {
   const refmarker = createRef();
   const [loading, setLoading] = useState(false);
   const [showMap, setShowMap] = useState(false);
-  const [showButton, setShowButton] = useState(false);
   const [loadingData, setLoadingData] = useState(false);
 
   const [locationMap, setLocationMap] = useState({
@@ -71,11 +70,9 @@ export const AddressStep = ({ history }) => {
 
   const toggleDraggable = () => {
     setLocationMap({ ...locationMap, draggable: !locationMap.draggable });
-    setShowButton(false);
   };
 
   const updatePosition = () => {
-    setShowButton(true);
     const marker = refmarker.current;
     if (marker != null) {
       setLocationMap({
@@ -87,8 +84,6 @@ export const AddressStep = ({ history }) => {
 
   const positionCenter = [locationMap.center.lat, locationMap.center.lng];
   const markerPosition = [locationMap.marker.lat, locationMap.marker.lng];
-
-  console.log(showButton);
 
   return (
     <>
@@ -144,8 +139,11 @@ export const AddressStep = ({ history }) => {
               ref={refmarker}
             >
               <Popup minWidth={90}>
-                <span onClick={toggleDraggable}>
-                  {locationMap.draggable ? "DRAG MARKER" : "MARKER FIXED"}
+                <span
+                  style={{ padding: "10px", display: "flex" }}
+                  onClick={toggleDraggable}
+                >
+                  Sua localização atual
                 </span>
               </Popup>
             </Marker>
