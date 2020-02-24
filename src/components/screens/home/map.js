@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import { UserContext } from "./userProvider";
+import { ProfileMarker } from "./profileMarker";
 
 export const MapComponent = ({
   location,
   onViewportChanged,
   userLocation,
-  setOpen
+  providers
 }) => {
   const { user } = useContext(UserContext);
 
@@ -32,14 +33,20 @@ export const MapComponent = ({
       />
       <Marker position={userLocation}>
         <Popup>
-          <div className="user-marker-image">
-            <img src={userImage} alt={name} />
-            <h3>
-              {name} {lastname}
-            </h3>
-          </div>
+          <ProfileMarker
+            name={name}
+            lastname={lastname}
+            userImage={userImage}
+          />
         </Popup>
       </Marker>
+      {providers.map(provider => {
+        return (
+          <Marker key={provider._id} position={provider.location.coordinates.reverse()}>
+            <Popup>{provider.fancyName}</Popup>
+          </Marker>
+        );
+      })}
     </Map>
   );
 };

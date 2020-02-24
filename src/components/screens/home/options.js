@@ -9,18 +9,22 @@ export const options = [
   },
   {
     id: 3,
-    title: "Restaurantes"
+    title: "Borracharia"
   },
   {
     id: 4,
-    title: "Manicure e pedicure"
+    title: "Restaurantes"
   },
   {
     id: 5,
-    title: "Cabelereiro"
+    title: "Manicure e pedicure"
   },
   {
     id: 6,
+    title: "Cabelereiro"
+  },
+  {
+    id: 7,
     title: "Supermercados"
   }
 ];

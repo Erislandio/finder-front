@@ -8,7 +8,7 @@ export const SelectDefault = ({
   selected
 }) => {
   return (
-    <select className="select-default" onChange={onSelect}>
+    <select className="select-default" onChange={e => onSelect(e)}>
       {selected ? null : <option>{defaultValue}</option>}
       {options.map(option => {
         return (
