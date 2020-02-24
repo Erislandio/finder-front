@@ -40,7 +40,7 @@ const MapContainer = ({ history }) => {
 
   useEffect(() => {
     getLocation();
-  });
+  }, []);
 
   const handleFilter = e => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
