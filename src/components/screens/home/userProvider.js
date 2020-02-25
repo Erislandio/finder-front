@@ -13,9 +13,14 @@ export const userProvider = Component => props => {
 
     const userId = auth.token.id;
     const token = auth.token.token;
+    const provider = auth.token.provider;
+
+    console.log(provider);
+
+    const url = provider ? "/provider" : "/user";
 
     api
-      .get("/user", {
+      .get(url, {
         params: {
           id: userId
         },
@@ -24,10 +29,16 @@ export const userProvider = Component => props => {
         }
       })
       .then(({ data }) => {
+        console.log(data);
+
         setUser({
           ...data,
           token
         });
+
+        if (provider) {
+          return props.history.push("/dashboard");
+        }
       });
   }, []);
 

@@ -50,18 +50,19 @@ export const Provider = ({ history }) => {
         api
           .post("/login", {
             email: user.email,
-            password: user.password,
-            provider: true
+            password: user.password
           })
           .then(({ data }) => {
             const token = data.token;
             const id = data.user._id;
+            const provider = data.provider;
 
             cookie.set("user", {
               token,
-              id
+              id,
+              provider
             });
-            history.push("/step1");
+            history.push("/provider/step1");
           })
           .catch(error => {
             return addToast(error, {

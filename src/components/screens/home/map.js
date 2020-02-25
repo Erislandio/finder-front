@@ -18,7 +18,7 @@ export const MapComponent = ({
   const { image, name, lastname } = user;
 
   const userImage = image
-    ? `data:image/png;base64,${image}`
+    ? image
     : "https://www.landscapingbydesign.com.au/wp-content/uploads/2018/11/img-person-placeholder.jpg";
 
   return (
@@ -42,7 +42,10 @@ export const MapComponent = ({
       </Marker>
       {providers.map(provider => {
         return (
-          <Marker key={provider._id} position={provider.location.coordinates.reverse()}>
+          <Marker
+            key={provider._id}
+            position={provider.location.coordinates.reverse()}
+          >
             <Popup>{provider.fancyName}</Popup>
           </Marker>
         );

@@ -29,20 +29,29 @@ function uploadProfilePicture(acceptedFiles, email, token, addToast, setUser) {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
   axios
-    .post("https://whispering-headland-58237.herokuapp.com/image", formData)
-    .then(({ data: { base64 } }) => {
-      axios
-        .patch("https://whispering-headland-58237.herokuapp.com/user/image", {
-          email,
-          image: base64
-        })
-        .then(({ data: user }) => {
-          setUser(user);
-          return addToast("Foto atualizada com sucesso!", {
-            appearance: "success"
+    .post(
+      "https://whispering-headland-58237.herokuapp.com/image/v2/photo",
+      formData
+    )
+    .then(
+      ({
+        data: {
+          newFile: { url }
+        }
+      }) => {
+        axios
+          .patch("https://whispering-headland-58237.herokuapp.com/user/image", {
+            email,
+            image: url
+          })
+          .then(({ data: user }) => {
+            setUser(user);
+            return addToast("Foto atualizada com sucesso!", {
+              appearance: "success"
+            });
           });
-        });
-    })
+      }
+    )
     .catch(() => {
       return addToast(
         "Não foi possível atualizar a imagem  no momento, tente novamente mais tarde",
@@ -62,23 +71,32 @@ function uploadProfileBanner(acceptedFiles, email, token, addToast, setUser) {
 
   try {
     axios
-      .post("https://whispering-headland-58237.herokuapp.com/image", formData)
-      .then(({ data: { base64 } }) => {
-        axios
-          .patch(
-            "https://whispering-headland-58237.herokuapp.com/user/banner",
-            {
-              email,
-              banner: base64
-            }
-          )
-          .then(({ data: user }) => {
-            setUser(user);
-            return addToast("Banner atualizado com sucesso!", {
-              appearance: "success"
+      .post(
+        "https://whispering-headland-58237.herokuapp.com/image/v2/banner",
+        formData
+      )
+      .then(
+        ({
+          data: {
+            newFile: { url }
+          }
+        }) => {
+          axios
+            .patch(
+              "https://whispering-headland-58237.herokuapp.com/user/banner",
+              {
+                email,
+                banner: url
+              }
+            )
+            .then(({ data: user }) => {
+              setUser(user);
+              return addToast("Banner atualizado com sucesso!", {
+                appearance: "success"
+              });
             });
-          });
-      })
+        }
+      )
       .catch(() => {
         return addToast(
           "Não foi possível atualizar o banner no momento, tente novamente mais tarde",

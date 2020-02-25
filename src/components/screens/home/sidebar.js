@@ -28,11 +28,11 @@ export const Sidebar = ({ history }) => {
   };
 
   const profilePicture = image
-    ? renderBlopImage(image)
+    ? `url(${image})`
     : "url(https://www.landscapingbydesign.com.au/wp-content/uploads/2018/11/img-person-placeholder.jpg)";
 
   const backgroundImage = banner
-    ? renderBlopImage(banner)
+    ? `url(${banner})`
     : "url(https://images.pexels.com/photos/374710/pexels-photo-374710.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500)";
 
   return (

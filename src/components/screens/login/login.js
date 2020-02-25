@@ -38,9 +38,12 @@ export const Login = ({ history }) => {
       if (data.user) {
         const token = data.token;
         const id = data.user._id;
+        const provider = data.provider;
+
+        console.log(data);
 
         cookie.set("user", {
-          token: { token, id }
+          token: { token, id, provider }
         });
         history.push("/home");
       }
