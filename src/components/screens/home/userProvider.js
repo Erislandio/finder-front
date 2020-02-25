@@ -11,11 +11,11 @@ export const userProvider = Component => props => {
     const hash = cookie.get("user").replace(/%22/g, '"');
     const auth = JSON.parse(hash);
 
-    const userId = auth.token.id;
-    const token = auth.token.token;
-    const provider = auth.token.provider;
+    const userId = auth.id;
+    const token = auth.token;
+    const provider = auth.provider;
 
-    console.log(provider);
+    console.log(userId)
 
     const url = provider ? "/provider" : "/user";
 

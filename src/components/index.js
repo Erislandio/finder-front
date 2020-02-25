@@ -9,7 +9,7 @@ import Home from "./screens/home/home";
 import { ToastProvider } from "react-toast-notifications";
 import { Institutional } from "./screens/institutional/institutional";
 import { AddressStep } from "./screens/provider/addressStep";
-import { Dashboard } from "./screens/dashboard/dashboard";
+import Dashboard from "./screens/dashboard/dashboard";
 
 export default function App() {
   return (

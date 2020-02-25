@@ -123,13 +123,120 @@ function uploadProfileBanner(acceptedFiles, email, token, addToast, setUser) {
   }
 }
 
+function uploadProviderBanner(acceptedFiles, email, token, addToast, setUser) {
+  const formData = new FormData();
+  formData.set("file", acceptedFiles[0]);
+  formData.set("email", email);
+
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+  try {
+    axios
+      .post(
+        "https://whispering-headland-58237.herokuapp.com/image/v2/banner",
+        formData
+      )
+      .then(
+        ({
+          data: {
+            newFile: { url }
+          }
+        }) => {
+          axios
+            .patch(
+              "https://whispering-headland-58237.herokuapp.com/provider/banner",
+              {
+                email,
+                banner: url
+              }
+            )
+            .then(({ data: user }) => {
+              setUser(user);
+              return addToast("Banner atualizado com sucesso!", {
+                appearance: "success"
+              });
+            });
+        }
+      )
+      .catch(() => {
+        return addToast(
+          "Não foi possível atualizar o banner no momento, tente novamente mais tarde",
+          {
+            appearance: "error"
+          }
+        );
+      })
+      .catch(() => {
+        return addToast(
+          "Não foi possível atualizar o banner no momento, imagem muito grande",
+          {
+            appearance: "error"
+          }
+        );
+      });
+  } catch (error) {
+    return addToast(
+      "Não foi possível atualizar o banner no momento, tente novamente mais tarde",
+      {
+        appearance: "error"
+      }
+    );
+  }
+}
+
 function renderBlopImage(image) {
   return `url(data:image/png;base64,${image})`;
+}
+
+function uploadProviderPicture(acceptedFiles, email, token, addToast, setUser) {
+  const formData = new FormData();
+  formData.set("file", acceptedFiles[0]);
+  formData.set("email", email);
+
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+  axios
+    .post(
+      "https://whispering-headland-58237.herokuapp.com/image/v2/photo",
+      formData
+    )
+    .then(
+      ({
+        data: {
+          newFile: { url }
+        }
+      }) => {
+        axios
+          .patch(
+            "https://whispering-headland-58237.herokuapp.com/provider/image",
+            {
+              email,
+              image: url
+            }
+          )
+          .then(({ data: user }) => {
+            setUser(user);
+            return addToast("Foto atualizada com sucesso!", {
+              appearance: "success"
+            });
+          });
+      }
+    )
+    .catch(() => {
+      return addToast(
+        "Não foi possível atualizar a imagem  no momento, tente novamente mais tarde",
+        {
+          appearance: "error"
+        }
+      );
+    });
 }
 
 export {
   base64toBlob,
   uploadProfilePicture,
   uploadProfileBanner,
-  renderBlopImage
+  renderBlopImage,
+  uploadProviderPicture,
+  uploadProviderBanner
 };

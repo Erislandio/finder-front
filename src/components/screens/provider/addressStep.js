@@ -60,7 +60,7 @@ export const AddressStep = ({ history }) => {
             });
 
             setTimeout(() => {
-              history.push("/home");
+              history.push("/dashboard");
             });
           }
         })

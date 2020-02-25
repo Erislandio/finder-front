@@ -5,7 +5,7 @@ import cookie from "js-cookie";
 import { UserContext } from "./userProvider";
 import { useDropzone } from "react-dropzone";
 import { useToasts } from "react-toast-notifications";
-import { uploadProfilePicture, renderBlopImage } from "./utils";
+import { uploadProfilePicture } from "./utils";
 import { ProfileBanner } from "./profileBanner";
 
 export const Sidebar = ({ history }) => {

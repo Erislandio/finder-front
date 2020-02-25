@@ -42,9 +42,7 @@ export const Login = ({ history }) => {
 
         console.log(data);
 
-        cookie.set("user", {
-          token: { token, id, provider }
-        });
+        cookie.set("user", { token, id, provider: provider });
         history.push("/home");
       }
     } catch (error) {
