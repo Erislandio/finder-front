@@ -21,7 +21,7 @@ export const options = [
   },
   {
     id: 6,
-    title: "Cabelereiro"
+    title: "Cabeleireiro"
   },
   {
     id: 7,

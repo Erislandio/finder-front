@@ -148,7 +148,7 @@ export const Provider = ({ history }) => {
               <option value="Moto Taxi">Moto taxi</option>
               <option value="Mecânica">Mecânica</option>
               <option value="Manicure e pedicure">Manicure e Pedicure</option>
-              <option value="Cabelereiro">Cabelereiro</option>
+              <option value="CabeleireiroOPR">Cabeleireiro</option>
               <option value="Supermercado">Supermercado</option>
               <option value="Pedreiro">Pedreiro</option>
               <option value="Carpinteiro">Carpinteiro</option>
