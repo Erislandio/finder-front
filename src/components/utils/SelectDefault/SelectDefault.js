@@ -5,10 +5,15 @@ export const SelectDefault = ({
   options,
   onSelect,
   defaultValue,
-  selected
+  selected,
+  loadingData
 }) => {
   return (
-    <select className="select-default" onChange={e => onSelect(e)}>
+    <select
+      disabled={loadingData}
+      className="select-default"
+      onChange={e => onSelect(e)}
+    >
       {selected ? null : <option>{defaultValue}</option>}
       {options.map(option => {
         return (

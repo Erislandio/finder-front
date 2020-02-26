@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Container } from "../../utils/container/container";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { api } from "../../../service/api";
-import { Link } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import cookie from "js-cookie";
 import { ButtonDefault } from "../../utils/button/buttonDefault";
@@ -156,6 +155,7 @@ export const Provider = ({ history }) => {
               <option value="Pintor">Pintor</option>
               <option value="Encanador">Encanador</option>
               <option value="Restaurante">Restaurante</option>
+              <option value="Mercearia">Mecearia</option>
             </select>
             <PhoneInput
               placeholder="Número de telefone"

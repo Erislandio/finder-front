@@ -5,7 +5,7 @@ export const options = [
   },
   {
     id: 2,
-    title: "Mecânica de Autos / Motos"
+    title: "Mecânica"
   },
   {
     id: 3,
@@ -25,6 +25,22 @@ export const options = [
   },
   {
     id: 7,
-    title: "Supermercados"
+    title: "Supermercado"
+  },
+  {
+    id: 8,
+    title: "Mercearia"
+  },
+  {
+    id: 9,
+    title: "Pintor"
+  },
+  {
+    id: 10,
+    title: "Pedreiro"
+  },
+  {
+    id: 11,
+    title: "Carpinteiro"
   }
 ];

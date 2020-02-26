@@ -8,7 +8,8 @@ export const FilterItem = ({
   handleFilter,
   filter,
   setOpen,
-  open
+  open,
+  loadingData
 }) => {
   return (
     <div>
@@ -18,6 +19,7 @@ export const FilterItem = ({
           defaultValue="Selecione algum filtro"
           onSelect={handleFilter}
           selected={filter}
+          loadingData={loadingData}
         />
       </span>
       <ButtonDefault type="default" onClick={() => setOpen(!open)}>

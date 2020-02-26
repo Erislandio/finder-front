@@ -24,6 +24,7 @@ const MapContainer = ({ history }) => {
   const [providers, setProviders] = useState([]);
   const [filter, setFilter] = useState(null);
   const [open, setOpen] = useState(false);
+  const [loadingData, setLoadingData] = useState(false);
 
   const getLocation = () => {
     navigator.geolocation.getCurrentPosition(
@@ -43,6 +44,7 @@ const MapContainer = ({ history }) => {
   }, []);
 
   const handleFilter = e => {
+    setLoadingData(true);
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     setFilter(e.target.value);
     axios
@@ -58,6 +60,9 @@ const MapContainer = ({ history }) => {
         addToast("Não foi possível fazer a busca, tente novamente", {
           appearance: "error"
         });
+      })
+      .finally(() => {
+        setLoadingData(false);
       });
   };
 
@@ -73,6 +78,7 @@ const MapContainer = ({ history }) => {
             filter={filter}
             setOpen={setOpen}
             open={open}
+            loadingData={loadingData}
           />
           <button
             className="user-marker"
