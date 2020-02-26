@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import { UserContext } from "./userProvider";
 import { ProfileMarker } from "./profileMarker";
+import { Link } from "react-router-dom";
 
 export const MapComponent = ({
   location,
@@ -20,6 +21,8 @@ export const MapComponent = ({
   const userImage = image
     ? image
     : "https://www.landscapingbydesign.com.au/wp-content/uploads/2018/11/img-person-placeholder.jpg";
+
+  console.log(providers);
 
   return (
     <Map
@@ -41,12 +44,25 @@ export const MapComponent = ({
         </Popup>
       </Marker>
       {providers.map(provider => {
+        const banner = provider.banner
+          ? `url(${provider.banner})`
+          : "https://www.bigprintinglasvegas.com/wp-content/uploads/2017/04/large-photo-placeholder-dark-gray-blue-1.png";
+
         return (
           <Marker
             key={provider._id}
             position={provider.location.coordinates.reverse()}
           >
-            <Popup>{provider.fancyName}</Popup>
+            <Popup>
+              <Link to={`/details/${provider._id}`}>
+                <div
+                  className="provider-card"
+                  style={{ backgroundImage: banner }}
+                  onClick={() => console.log(provider._id)}
+                ></div>
+                <h3>{provider.fancyName}</h3>
+              </Link>
+            </Popup>
           </Marker>
         );
       })}

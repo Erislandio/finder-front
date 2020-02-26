@@ -10,6 +10,7 @@ import { ToastProvider } from "react-toast-notifications";
 import { Institutional } from "./screens/institutional/institutional";
 import { AddressStep } from "./screens/provider/addressStep";
 import Dashboard from "./screens/dashboard/dashboard";
+import { Details } from "./screens/details/details";
 
 export default function App() {
   return (
@@ -19,7 +20,8 @@ export default function App() {
           <PrivateRoute component={Account} path="/account" />
           <PrivateRoute component={Home} path="/home" />
           <PrivateRoute component={AddressStep} path="/provider/step1" exact />
-          <PrivateRoute component={Dashboard} path="/dashboard" exact />
+          <PrivateRoute component={Dashboard} path="/dashboard/" exact />
+          <PrivateRoute component={Details} path="/details/:id" exact />
           <LoginRoute component={Login} path="/login" exact />
           <PublicRoute exact path="/signin" component={SignIn} />
           <PublicRoute exact path="/provider" component={Provider} />

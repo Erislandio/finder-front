@@ -218,3 +218,22 @@ svg.banner-change {
 .react-toast-notifications__container {
   z-index: 1000000000 !important;
 }
+
+.provider-card {
+  min-width: 50px;
+  min-height: 100px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.provider-card ~ h3 {
+  padding: 5px;
+  font-size: 13px;
+  text-align: center;
+  color: #333;
+  text-decoration: none;
+}
+
+a.leaflet-popup-close-button {
+  color: #000 !important;
+}
