@@ -1,5 +1,42 @@
 svg.back-button {
-    position: absolute;
-    left: 20px;
-    top: 20px;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+
+.aval-card {
+  padding: 0px 20px;
+  width: 100%;
+  margin: 15px 0px;
+  position: relative;
+}
+
+.aval-card img {
+  max-width: 60px;
+  border-radius: 50%;
+  border: 1px solid #dedede;
+}
+
+.aval-card > div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  border: 1px solid #dedede;
+  padding: 10px;
+  position: relative;
+  -webkit-box-shadow: 4px 2px 9px -4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 2px 9px -4px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 2px 9px -4px rgba(0, 0, 0, 0.75);
+}
+
+.aval-card > div > div {
+  margin-left: 15px;
+}
+
+span.btn-edit {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  background: transparent;
+  border: none;
 }
