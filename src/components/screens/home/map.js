@@ -22,7 +22,6 @@ export const MapComponent = ({
     ? image
     : "https://www.landscapingbydesign.com.au/wp-content/uploads/2018/11/img-person-placeholder.jpg";
 
-
   return (
     <Map
       center={location.center}
@@ -53,7 +52,7 @@ export const MapComponent = ({
             position={provider.location.coordinates.reverse()}
           >
             <Popup>
-              <Link to={`/details/${provider._id}`} >
+              <Link to={`/details/${provider._id}`}>
                 <div
                   className="provider-card"
                   style={{ backgroundImage: banner }}
